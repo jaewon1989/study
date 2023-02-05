@@ -32,7 +32,6 @@ with open(secret_file) as f:
 def get_secret(setting, secrets=secrets):
     """비밀 변수를 가져오거나 명시적 예외를 반환한다."""
     try:
-        print("check:", secrets[setting])
         return secrets[setting]
     except KeyError:
         error_msg = "Set the {} environment variable".format(setting)

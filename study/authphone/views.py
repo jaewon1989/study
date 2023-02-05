@@ -3,12 +3,13 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .serializers import *
+from .models import AuthPhone
+from .serializers import AuthPhoneCreateSerializer, AuthPhoneIsSuccessUpdateSerializer
 
 
 # 인증 정보 저장
 @api_view(['POST'])
-def setAuthInfo(request):
+def set_auth_info(request):
     serializer = AuthPhoneCreateSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -18,20 +19,10 @@ def setAuthInfo(request):
 
 # 인증 정보 변경
 @api_view(['PUT'])
-def updateAuthInfoByPhone(request, phone):
-    authPhoneInfo = get_object_or_404(AuthPhone, phone=phone)
-    serializer = AuthPhoneIsSuccessUpdateSerializer(authPhoneInfo,
-                                                    data={'is_success': '0' if authPhoneInfo.is_success else '1'})
+def update_auth_info(request, auth_phone_id):
+    auth_phone_info = get_object_or_404(AuthPhone, seq=auth_phone_id)
+    serializer = AuthPhoneIsSuccessUpdateSerializer(auth_phone_info,
+                                                    data={'is_success': '0' if auth_phone_info.is_success else '1'})
     if serializer.is_valid():
         serializer.save()
     return Response(status=status.HTTP_200_OK)
-
-
-# 인증 유무 확인
-@api_view(['GET'])
-def getAuthInfoByPhone(request, phone):
-    authPhoneInfo = get_object_or_404(AuthPhone, phone=phone)
-    serializer = AuthPhoneSerializer(authPhoneInfo)
-    if serializer.data.get('is_success'):
-        return Response(status=status.HTTP_200_OK)
-    return Response(status=status.HTTP_403_FORBIDDEN)

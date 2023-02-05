@@ -3,7 +3,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.setAuthInfo),  # 인증 정보 저장
-    path('<str:phone>', views.updateAuthInfoByPhone),  # 인증 정보 변경
-    path('check/<str:phone>', views.getAuthInfoByPhone),  # 인증 유무 확인
+    path('', views.set_auth_info),  # 인증 정보 저장
+    path('<int:auth_phone_id>', views.update_auth_info),  # 인증 정보 변경
 ]
