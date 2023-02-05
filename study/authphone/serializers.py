@@ -18,4 +18,4 @@ class AuthPhoneCreateSerializer(ModelSerializer):
 class AuthPhoneIsSuccessUpdateSerializer(ModelSerializer):
     class Meta:
         model = AuthPhone
-        fields = ('is_success',)
+        fields = ('auth_number', 'is_success')
