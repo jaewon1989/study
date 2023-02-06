@@ -124,11 +124,11 @@ class TestSignup(APITestCase):
         self.assertNotEqual(before_auth_info.is_success, after_auth_info.is_success)
         self.assertEqual(after_auth_info.is_success, True)
 
-        # 회원가입 요청
+        # 회원 가입 요청
         response = self.client.post(self.signup_url, data=self.correct_customer_params)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        # 회원가입 시 작성된 데이터 비교
+        # 회원 가입 시 작성된 데이터 비교
         customer = Customer.objects.get(email=self.email, nickname=self.nickname, password=self.password,
                                         name=self.name, phone=self.phone)
         self.assertEqual(customer.email, self.email)
@@ -173,7 +173,7 @@ class TestSignin(APITestCase):
             'phone': self.empty_phone
         }
 
-        # 회원가입 완료 상태
+        # 회원 가입 완료 상태
         self.client.post(self.auth_info_url, data=self.correct_auth_info_params)
         auth_info = AuthPhone.objects.get(phone=self.phone)
         self.client.put(self.auth_info_url + str(auth_info.seq))
@@ -265,7 +265,7 @@ class TestMypage(APITestCase):
             'phone': self.phone
         }
 
-        # 회원가입 완료 상태
+        # 회원 가입 완료 상태
         self.client.post(self.auth_info_url, data=self.correct_auth_info_params)
         auth_info = AuthPhone.objects.get(phone=self.phone)
         self.client.put(self.auth_info_url + str(auth_info.seq))
@@ -316,7 +316,7 @@ class TestChangePassword(APITestCase):
             'phone': self.phone
         }
 
-        # 회원가입 완료 상태
+        # 회원 가입 완료 상태
         self.client.post(self.auth_info_url, data=self.correct_auth_info_params)
         self.auth_info = AuthPhone.objects.get(phone=self.phone)
         self.client.put(self.auth_info_url + str(self.auth_info.seq))
