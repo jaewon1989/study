@@ -1,4 +1,4 @@
-### 실행방법 (PyCharm 기준)
+## 실행방법 (PyCharm 기준)
 
 1. [github 소스 다운로드](https://github.com/jaewon1989/study.git)
 2. 다운로드한 소스 IDE 열기
@@ -21,15 +21,16 @@
 7. run server 실행
     - venv 환경 터미널 내 "python manage.py runserver" 입력
 
-### 개발환경
+## 개발환경
 
 - Pycharm
 - DataGrip
 - Postman
 - Sourcetree
 
-### 사용기술
+## 사용기술
 
+- python3
 - Django
 - DRF
 - AWS RDS Aurora(MySql)
@@ -96,7 +97,7 @@
 5. 백엔드에서 from data 내 포함된 전화번호 인증 완료 값에 상관 없이 한번 더 전화번호 인증 여부를 확인한다.
 6. 전화번호 인증이 완료된 상태이고 신규 비밀번호가 세팅되어 있으면 비밀번호 변경 완료한다.
 
-# 특별히 신경 쓴 부분
+## 특별히 신경 쓴 부분
 
 - python 개발이 난생 처음이라 실무 환경에 최대한 가깝게 세팅하고자 Django, DRF, AWS RDS Aurora(mysql) 사용하였습니다.
 - 여러 개발환경을 대응하기 위해 [settings](study/study/settings)을 만들었습니다.
